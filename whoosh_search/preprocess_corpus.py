@@ -27,7 +27,7 @@ import pandas as pd
 
 nlp = English()
 sentencizer = nlp.create_pipe("sentencizer")
-nlp.add_pipe(sentencizer)
+nlp.add_pipe("sentencizer")
 
 
 tokenizer = nlp.Defaults.create_tokenizer(nlp)
