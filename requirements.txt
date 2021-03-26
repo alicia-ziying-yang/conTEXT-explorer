@@ -8,10 +8,10 @@ dash-table==4.9.0
 gunicorn>=19.9.0
 numpy>=1.16.2
 pandas>=0.24.2
-Whoosh>=2.7.4
-spacy>=2.2.4
-gensim>=3.8.1
-nltk>=3.4.5
+Whoosh==2.7.4
+spacy==2.2.4
+gensim==3.8.1
+nltk==3.4.5
 backports.csv==1.0.7
 urllib3==1.25.8
 wordcloud==1.8.1 
