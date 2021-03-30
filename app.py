@@ -1876,7 +1876,7 @@ def search_top(field_name, corpus_name):
 
 def loading_layout():
     return [
-                dcc.Markdown('''## **C**ontext **E**xplorer''', style={"border-bottom": "2px solid #494949",
+                dcc.Markdown('''## **C**onTEXT **E**xplorer''', style={"border-bottom": "2px solid #494949",
                                                                         "margin-top":"10%"}),
                 html.Div(
                     id="corpus-select-menu",
@@ -2202,7 +2202,7 @@ def parse_contents(contents, filename):
                 html.Div("03",className="upload-number"),
                 dcc.Markdown('''## **U**pload **Y**our **C**orpus''', style={"border-bottom": "4px solid #494949",
                                                                     "width":"600px","margin-top":"20px"}),]),
-            html.Div(html.P(["Please name your corpus. You can use any combination of letters and numbers connected by an underscore e.g., “Context_explorer_123”",html.Br(),html.Br(),
+            html.Div(html.P(["Please name your corpus. You can use any combination of letters and numbers connected by an underscore e.g., “ConTEXT_explorer_123”",html.Br(),html.Br(),
                 "Please be patient. It will take a few minutes."]),className="upload-des"),
 
             html.Div(style={"display":"flex","margin-top":"1%","margin-bottom":"5%"},children=[
@@ -2312,5 +2312,5 @@ def update_output(iscompleted,filenames, upload_id, upload):
 
 # Running the server
 if __name__ == "__main__":
-    app.run_server(debug=False,host="0.0.0.0") # ubuntu server
-    #app.run_server(debug=False, port="8010") # local test
+    #app.run_server(debug=False,host="0.0.0.0") # ubuntu server
+    app.run_server(debug=False, port="8010") # local test
