@@ -1,6 +1,7 @@
 # context-explorer
 
-Context Explorer is ...
+ContextExplorer is an open Web-based system for exploring and analysing concepts (combinations of co-occuring words and phrases) in the text documents. 
+ContextEplorer is designed to lower the barriers to applying information retrieval and machine learning for text analysis, including... (list functionalities here). It is designed to be user-friendly, enabling researchers to make sense of the text data without technical knowledge.
 
 ## How to install
 ### Get the app
