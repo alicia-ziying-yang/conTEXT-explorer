@@ -9,29 +9,28 @@ Clone this repo to your local environment:
     git clone https://github.com/alicia-ziying-yang/conTEXT-explorer.git
 
 ### Install required dependencies    
-ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5`, and all required packages are listed in `requirement.txt`. Please upgrade `pip` to the newest version, and use
+ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5`, and all required packages are listed in `requirement.txt`. To install the packages in your local environment, you need to upgrade `pip` to the newest version and use:
 
     pip install -r requirements.txt; fi 
-to install these packages in your local environment.
 
 ### Run the app
-- If you are going to run this app on a **ubuntu server**, simply just excute:
+- If you want to run ConTEXT Explorer on an **ubuntu server**, use:
 
       python app.py
 
-  The IP address for accessing will be displayed in the output.
+  The IP address with app access will be displayed in the output.
   
-  You may want to run it with `nohup`:
+  If you have issues with the access, try run the code with `nohup`:
 
       nohup python app.py &
     
   
 
-- If you want to run the app in your **local computer**, comment the code for ubuntu server, and uncomment the last line in `app.py`:
+- If you want to run ConTEXT Explorer on your **local computer**, comment the code for ubuntu server, and uncomment the last line in `app.py`:
 
-       # app.run_server(debug=False,host="0.0.0.0") # ubuntu server    
+       # app.run_server(debug=False, host="0.0.0.0") # ubuntu server    
        app.run_server(debug=False, port="8010") # local test           
 
-  You can then access the app via visiting http://127.0.0.1:8010 in your broswer.
+  You can then access the app through your browser: http://127.0.0.1:8010
 
 ## How to use
