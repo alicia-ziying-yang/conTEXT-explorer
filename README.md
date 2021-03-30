@@ -1,4 +1,4 @@
-# context-explorer
+# conTEXT-explorer
 
 **ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occuring words and phrases) over time in the text documents. **ConTEXT Explorer** is designed to lower the barriers to applying information retrieval and machine learning for text analysis, including... (list functionalities here). It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge.
 
