@@ -1,6 +1,20 @@
 # ConTEXT-Explorer
 
-**ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occuring words and phrases) over time in the text documents. **ConTEXT Explorer** is designed to lower the barriers to applying information retrieval and machine learning for text analysis, including... (list functionalities here). It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge.
+**ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occuring words and phrases) over time in the text documents. **ConTEXT Explorer** is designed to lower the barriers to applying information retrieval and machine learning for text analysis, including
+- processing text in a **Spacy pipline** with sentencizer and tokenizer;
+- building **Gensim** word2vec model for discovering similar terms in order to help form queries;
+- indexing the cleaned text, and creating a search engine using **Whoosh** which employes the Okapi BM25F function to rank sentences;
+- visualizing results across time in interactive graphs using **Plotly**.
+
+It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge. Users may
+
+- upload (and save) their own corpus, and costomize search fields;
+- add terms to query from word2vec model, sentences in the ranking, and input form;
+- check term frequecies over time;
+- group terms with "ALL" or "ANY" operator, and compound the formed groups into greater groups;
+- view overall and individual graphs of groups in levels of raw count and proportion;
+- save and reload results of groups; 
+- download a corpus subset filtered by the added terms.
 
 ## How to install
 ### Get the app
