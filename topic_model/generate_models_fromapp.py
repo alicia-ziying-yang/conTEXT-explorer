@@ -46,7 +46,6 @@ def build_model(df_full,corpus_name,content_col):
 
         file_name = '/selected_content_' + corpus_name + '.pkl'
         df.to_pickle(path+file_name)
-        print("load ok")
               
     except:
         print("reading failed", time.time() - start_time)
