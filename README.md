@@ -49,6 +49,6 @@ ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Pyt
 
 ## How to use
 
-![alt text](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
+![Click here to view paged PDF version](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
 
 ![alt text](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/1f330277415a54bff35e9dbd00025bb57fe6221d/doc/conTEXT_explorer_ui_manual.png?raw=true)
