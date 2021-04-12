@@ -6,7 +6,7 @@
 - indexing the cleaned text, and creating a search engine using **Whoosh** which employes the Okapi BM25F function to rank sentences;
 - visualizing results across time in interactive graphs using **Plotly**.
 
-It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge. Users may
+It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge. Users may:
 
 - upload (and save) their own corpus, and costomize search fields;
 - add terms to query from word2vec model, sentences in the ranking, and input form;
@@ -15,6 +15,8 @@ It is designed to be user-friendly, enabling researchers to make sense of their 
 - view overall and individual graphs of groups in levels of raw count and proportion;
 - save and reload results of groups; 
 - download a corpus subset filtered by the added terms.
+
+More details can be found in the user manual below.
 
 ## How to install
 ### Get the app
