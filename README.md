@@ -54,3 +54,8 @@ ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Pyt
 [Click here to view the paged PDF version](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
 
 ![alt text](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/1f330277415a54bff35e9dbd00025bb57fe6221d/doc/conTEXT_explorer_ui_manual.png?raw=true)
+
+## Contact and Contribution
+This application is designed and developed by Ziying (Alicia) Yang, Gosia Mikolajczak, and Andrew Turpin from the [University of Melbourne](https://www.unimelb.edu.au/) in Australia.
+
+If you have any problems, suggestions for improvements, contributions to this project such as adding new functions or features, you are welcomed to [submit issues](https://github.com/alicia-ziying-yang/conTEXT-explorer/issues/new) and pull requests.
