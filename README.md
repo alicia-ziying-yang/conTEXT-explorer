@@ -14,7 +14,7 @@ It is designed to be user-friendly, enabling researchers to make sense of their 
 - group terms with "ALL" or "ANY" operator, and compound the groups to form more complex queries;
 - view results across time for each query (using raw counts or proportion of relevant documents);
 - save and reload results for further analysis; 
-- download a subset of a corpus filtered by specified terms.
+- download a subset of a corpus filtered by user-defined terms.
 
 More details can be found in the user manual below.
 
