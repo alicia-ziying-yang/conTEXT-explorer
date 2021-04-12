@@ -9,7 +9,7 @@
 It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge. Users may:
 
 - upload (and save) their text corpus, and customize search fields;
-- add terms to the query using input from the word2vec model, sentence ranking or manual input;
+- add terms to the query using input from the word2vec model, sentence ranking, or manually;
 - check term frequencies across time;
 - group terms with "ALL" or "ANY" operator, and compound the groups to form more complex queries;
 - view results across time for each query (using raw counts or proportion of relevant documents);
