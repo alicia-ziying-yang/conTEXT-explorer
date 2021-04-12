@@ -51,6 +51,7 @@ ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Pyt
   You can then access the app through your browser: http://127.0.0.1:8010
 
 ## How to use
+An [example corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/sample_data.csv) with a saved analysis are preset in this app. Please feel free to explore the app features using this example. The example corpus could be deleted at anytime. Please check more details in the manual below.
 
 [Click here to view the paged PDF version](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
 
