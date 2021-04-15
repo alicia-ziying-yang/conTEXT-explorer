@@ -9,7 +9,7 @@
 
 It is designed to be user-friendly, enabling researchers to make sense of their data without technical knowledge. Users may:
 
-- upload (and save) their text corpus, and customize search fields;
+- upload (and save) a text corpus, and customize search fields;
 - add terms to the query using input from the word2vec model, sentence ranking, or manually;
 - check term frequencies across time;
 - group terms with "ALL" or "ANY" operator, and compound the groups to form more complex queries;
@@ -51,7 +51,7 @@ ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Pyt
   You can then access the app through your browser: http://127.0.0.1:8010
 
 ## How to use
-An [example corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/sample_data.csv) with a saved analysis are preset in this app. Please feel free to explore the app features using this example. The example corpus could be deleted at anytime. Please check more details in the manual below.
+A [sample corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/sample_data.csv) with a saved analysis is preset in this app. Feel free to explore the app features using this example. Please check more details in the manual below.
 
 [Click here to view the paged PDF version](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
 
@@ -60,4 +60,4 @@ An [example corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/
 ## Contact and Contribution
 This application is designed and developed by Ziying (Alicia) Yang, Gosia Mikolajczak, and Andrew Turpin from the [University of Melbourne](https://www.unimelb.edu.au/) in Australia.
 
-If you have any problem, suggestions for improvements, or contributions to this project such as adding new functions or features, you are welcomed to [submit issues](https://github.com/alicia-ziying-yang/conTEXT-explorer/issues/new) and pull requests.
+If you encounter any errors while using the app, have suggestions for improvement, or want to contribute to this project by adding new functions or features, please [submit an issue here](https://github.com/alicia-ziying-yang/conTEXT-explorer/issues/new) and pull requests.
