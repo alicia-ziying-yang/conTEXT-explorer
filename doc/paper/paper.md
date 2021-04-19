@@ -27,7 +27,7 @@ bibliography: paper.bib
 
 # 1. Summary
 
-**ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occurring words and phrases) over time in the text documents. It provides a user-friendly interface to the analysis of user-provided text data and integrates functionalities of the Whoosh search engine, and Spacy, Gensim and Plotly Python libraries. By providing suggestions for query expansion and producing interactive plots, `ConTEXT Explorer` facilitates exploratory data analysis, which can serve as the basis for text classification.
+**ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occurring words and phrases) over time in the text documents. It provides a user-friendly interface to the analysis of user-provided text data and integrates functionalities of the Whoosh search engine, and Spacy, Gensim and Plotly Python libraries. By providing suggestions for query expansion and producing interactive plots, `ConTEXT Explorer` facilitates exploratory data analysis, which can serve as the basis for subsequent text classification.
 
 # 2. Statement of Need
 
@@ -96,4 +96,4 @@ As mentioned in Section 3.2, users are able to save the details of their analysi
 # Acknowledgements
 
 
-# Reference
+# References
