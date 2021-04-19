@@ -34,6 +34,7 @@ bibliography: paper.bib
 With the explosion of digital sources of data, automated text analysis is becoming increasingly popular in humanities and social sciences. However, most computational approaches require at least working knowledge of relevant methods and programming languages (such as R/Python). `ConTEXT Explorer` is designed to lower these barriers to entry, by allowing an application of information retrieval and machine learning in text analysis without programming knowledge. 
 
 `ConTEXT Explorer` is developed using **Dash** [@plotly] in Python, and integrates the following packages:
+
 - **Spacy** pipeline [@spacy] - for pre-processing the text corpora uploaded by users;
 - **Whoosh** [@whoosh] - for building a search engine, which allows to rank sentences relevant to the given query terms, and find word frequencies at the sentence and document level;
 - **Gensim** [@gensim] - for training a word2vec [@word2vec] model for the uploaded corpus, which allows the user to find words related to the base term when expanding the query;
