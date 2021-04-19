@@ -1,25 +1,33 @@
 ---
 title: 'ConTEXT Explorer: a web-based text analysis tool for exploring and visualizing concepts across time'
 tags:
+  - Python
   - Dash
   - Data Analysis
   - Data Visulization
 authors:
   - name: Ziying Yang
-        orcid: 0000-0001-7705-3280
-        affiliation: 1
+    orcid: 0000-0001-7705-3280
+    affiliation: 1
   - name: Gosia Mikolajczak
-        orcid: 0000-0002-7386-4155
-        affiliation: 1
+    orcid: 0000-0002-7386-4155
+    affiliation: 2
   - name: Andrew Turpin
-        orcid:
-        affiliation: 1
+    affiliation: 1
 affiliations:
-  - name: University of Melbourne
-        index: 1
+ - name: University of Melbourne
+   index: 1
+
 date: 19 April 2021
 bibliography: paper.bib
+
+# Optional fields if submitting to a AAS journal too, see this blog post:
+# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
+aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
+aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
+
+
 
 # 1. Summary
 
