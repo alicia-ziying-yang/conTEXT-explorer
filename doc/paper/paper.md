@@ -11,7 +11,7 @@ authors:
     affiliation: 1
   - name: Gosia Mikolajczak
     orcid: 0000-0002-7386-4155
-    affiliation: 2
+    affiliation: 1
   - name: Andrew Turpin
     affiliation: 1
 affiliations:
