@@ -1,5 +1,5 @@
 ---
-title: "ConTEXT Explorer: a web-based text analysis tool for exploring and visualizing concepts across time" 
+title: 'ConTEXT Explorer: a web-based text analysis tool for exploring and visualizing concepts across time'
 tags:
   - Dash
   - Data Analysis
@@ -19,7 +19,6 @@ affiliations:
         index: 1
 date: 19 April 2021
 bibliography: paper.bib
-
 ---
 
 # 1. Summary
