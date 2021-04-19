@@ -94,6 +94,6 @@ As mentioned in Section 3.2, users are able to save the details of their analysi
 
 
 # Acknowledgements
-
+Development of `ConTEXT Explorer` has been supported by the Australian Research Council Discovery Project (DP180101711) “Understanding Political Debate and Policy Decisions Using Big Data” awarded to the third author.
 
 # References
