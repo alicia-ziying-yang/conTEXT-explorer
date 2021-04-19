@@ -20,10 +20,6 @@ affiliations:
 date: 19 April 2021
 bibliography: paper.bib
 
-# Optional fields if submitting to a AAS journal too, see this blog post:
-# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
-aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
 # 1. Summary
@@ -34,7 +30,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 With the explosion of digital sources of data, automated text analysis is becoming increasingly popular in humanities and social sciences. However, most computational approaches require at least working knowledge of relevant methods and programming languages (such as R/Python). **ConTEXT Explorer** is designed to lower these barriers to entry, by allowing an application of information retrieval and machine learning in text analysis without programming knowledge. 
 
-**ConTEXT Explorer** ****is developed using **Dash** [@plotly] in Python, and integrates the following packages:
+**ConTEXT Explorer** is developed using **Dash** [@plotly] in Python, and integrates the following packages:
 
 - **Spacy** pipeline [@spacy] - for pre-processing the text corpora uploaded by users;
 - **Whoosh** [@whoosh] - for building a search engine, which allows to rank sentences relevant to the given query terms, and find word frequencies at the sentence and document level;
@@ -97,7 +93,7 @@ As shown in Figure 3.1, the dashboard interface has two panes. On the left-hand 
 ![Figure 3.4 ‘Graphs’ tab, showing the aggregated graph for all groups (top) and individual graph for each group (bottom)](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618282796027_graphs.png)
 
 
-**Graphs** Based on the query groups generated in the previous tab, this page displays aggregated and individual plots, which allow to compare groups (top) and individual terms within each group (bottom). Users can choose the number of relevant documents, number of sentences, or proportion of document as the y-axis of the graphs. All graphs are plotted by Plotly [@plotly] ****which allows users to interact with every trace in the graphs.
+**Graphs** Based on the query groups generated in the previous tab, this page displays aggregated and individual plots, which allow to compare groups (top) and individual terms within each group (bottom). Users can choose the number of relevant documents, number of sentences, or proportion of document as the y-axis of the graphs. All graphs are plotted by Plotly [@plotly] which allows users to interact with every trace in the graphs.
 
 
 ## 3.3 Save and reload an analysis
