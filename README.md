@@ -28,7 +28,7 @@ Clone this repo to your local environment:
 ### Install required dependencies    
 ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5`, and all required packages are listed in `requirement.txt`. To install the packages in your local environment, you need to upgrade `pip` to the newest version and use:
 
-    pip install -r requirements.txt; fi 
+    pip install -r requirements.txt 
 
 ### Run the app
 - If you want to run ConTEXT Explorer on an **ubuntu server**, use:
