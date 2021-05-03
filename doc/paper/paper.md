@@ -75,7 +75,7 @@ Users are asked to format their text documents as a CSV file (with each document
 For each corpus, users can create a new analysis, or load a pre-saved analysis to the dashboard. 
 
 ## 3.2 Dashboard
-![Figure 3.1 The dashboard.](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618206868822_overview.png,"The starting dashboard.")
+![Figure 1 The starting dashboard.](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618206868822_overview.png)
 
 As shown in Figure 1, the dashboard interface has two panes. On the left-hand side, users can: 
 
@@ -86,7 +86,7 @@ As shown in Figure 1, the dashboard interface has two panes. On the left-hand si
 
 **Overview**. The overview tab summarizes the corpus information such as the total number of documents, year range, document length, most frequent words in the corpus, and most frequent values for selected metadata
 
-![Figure 3.2 The sentences tab of the dashboard, with some query terms shown in the left pane.](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618211302082_sentences.png, "The sentences tab of the dashboard, with some query terms shown in the left pane.")
+![Figure 2 The sentences tab of the dashboard, with some query terms shown in the left pane.](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618211302082_sentences.png)
 
 **Sentences**. This tab shows the ranking of relevant sentences based on query terms defined in the left pane. Sentences are ranked by the Okapi BM25F ranking function, and the computed similarity score for each sentence is shown in the "SCORE" column. The table can be sorted and filtered by column values. Users can click on each sentence to see its full content in a pop-up window, which also allows checking of the frequency of individual terms, and to add them to the query.
 
