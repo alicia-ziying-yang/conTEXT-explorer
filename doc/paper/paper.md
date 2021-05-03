@@ -98,7 +98,7 @@ As shown in Figure 3.1, the dashboard interface has two panes. On the left-hand 
 **Grouping**. The top part of this tab shows the number of sentences containing each query term within the user-defined year range. In the bottom part, users can group the query terms using "Any" or "All" operators. Groups can be further combined into more complex groups.
 
 ![Figure 3.4 ‘Graphs’ tab, showing the aggregated graph for all groups (top) and individual graph for each group (bottom)](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618282796027_graphs.png)
-<figcaption>Figure 3.4 ‘Graphs’ tab, showing the aggregated graph for all groups (top) and individual graph for each group (bottom).</figcaption>
+<figcaption>Figure 3.4 'Graphs' tab, showing the aggregated graph for all groups (top) and individual graph for each group (bottom).</figcaption>
 
 **Graphs**. Based on the query groups generated in the previous tab, this page displays aggregated and individual plots, which allow to compare groups (top) and individual terms within each group (bottom). Users can choose the number of relevant documents, number of sentences, or proportion of document as the y-axis of the graphs. All graphs are plotted by Plotly [@plotly] which allows users to interact with every trace in the graphs.
 
