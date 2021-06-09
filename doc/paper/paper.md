@@ -29,7 +29,7 @@ bibliography: paper.bib
 
 **ConTEXT Explorer** is an open Web-based system that assists in exploring the context of concepts (combinations of co-occurring words and phrases) over time in text documents. It provides a user-friendly interface to the analysis of user-provided text data and integrates functionalities of the Whoosh search engine, Spacy, Gensim and Plotly Python libraries. By providing suggestions for query expansion and producing interactive plots, `ConTEXT Explorer` facilitates exploratory data analysis, which can serve as the basis for subsequent text classification.
 
-# 2. Statement of Need
+# 2. Statement of need
 
 With the availability of digital sources of data and associated tools, automated text analysis is becoming increasingly popular in humanities and social sciences. While for very large coprora, unsupervised text mining methods like topic modelling [@lda] can provide some useful summaries of data, many social science and humanities applications require analysis of data in context. That is, simple "bags of words" automatically mined and presented in isolation from the orignial text are often not meaningful for complex questions involving human behaviour and society. Inevitably, human interpretation is required to make sense of such patterns. For corpora with more than several hundred documents, there is a need for computational tools that can assist researchers in exploring the context in which "bags of words" (we will call them <em>concepts</em> from now on) occur. 
 
@@ -58,7 +58,7 @@ Compared to commercial text analysis systems such as **RapidMiner** [@rapidminer
 
  
 
-# 3. Key Features
+# 3. Key features
 
 `ConTEXT Explorer` has been tested locally under macos and as a server running under Ubuntu.
 
