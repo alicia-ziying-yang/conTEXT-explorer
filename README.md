@@ -56,7 +56,7 @@ A [sample corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/ma
 
 [Click here to view the paged PDF version](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/conTEXT_explorer_ui_manual.pdf)
 
-![alt text](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/1f330277415a54bff35e9dbd00025bb57fe6221d/doc/conTEXT_explorer_ui_manual.png?raw=true)
+![alt text](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/6b1e79e2068eb284a132493815f35e57b3fec409/doc/conTEXT_explorer_ui_manual.png?raw=true)
 
 ## Contact and Contribution
 This application is designed and developed by Ziying (Alicia) Yang, Gosia Mikolajczak, and Andrew Turpin from the [University of Melbourne](https://www.unimelb.edu.au/) in Australia.
