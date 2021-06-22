@@ -27,8 +27,6 @@ label{
 #big-app-container {
   width: 100%;
   display: flex;
-  /*flex-direction: column;*/
-  /*align-items: center;*/
   padding: 0 4rem;
 }
 
@@ -471,7 +469,7 @@ lable {
 }
 
 #Overview-tab.custom-tab,
-#Specs-tab.custom-tab, #Graph-tab.custom-tab,
+#Specs-tab.custom-tab, /*#Graph-tab.custom-tab,*/
 #Group-tab.custom-tab, #Control-chart-tab.custom-tab{
   margin-right: 3px;
 }
@@ -866,7 +864,7 @@ lable {
 
 .output-datatable {
   margin: 1.3rem 0rem 0rem 3rem;
-  line-height:2.4;
+  line-height:1.5;
   align-self: flex-end;
   width: 94%;
   font-variant: all-petite-caps;
@@ -881,12 +879,13 @@ lable {
 
 .react-numeric-input, .react-numeric-input input {
   width: 100% !important;
+  height: 80%;
 }
 
 .react-numeric-input input {
-  background-color: #f4e9dc !important;
+  background-color: transparent !important;
   border-color: #e85e56 !important;
-  color: #e85e56 !important;
+  color: inherit !important;
 }
 
 .react-numeric-input b:nth-child(2) i {
@@ -897,6 +896,18 @@ lable {
   border-color: #e85e56 transparent transparent !important;
 }
 
+.sent-pp div .react-numeric-input input {
+  border-color: #404040 !important;
+  font-size: small !important;
+}
+
+.sent-pp div .react-numeric-input b:nth-child(2) i {
+  border-color: transparent transparent #404040 !important;
+}
+
+.sent-pp div .react-numeric-input b:nth-child(3) i {
+  border-color: #404040 transparent transparent !important;
+}
 /* Input
 ----------------------------------------------*/
 
@@ -1056,11 +1067,10 @@ input[type="checkbox"]:checked{
 }
 .side-side-side2{
   display: block;
-  height: 10%;
-  min-height: 145px;
+  height: 25vh;
   width: 90%;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   border: solid #e85e56;
   border-width: 1px;
   border-radius: 4px;
@@ -1126,33 +1136,90 @@ div#added-terms::-webkit-scrollbar-thumb {
     background-color: #e85e56;
     border-radius:10px;
 }
+.dash-tooltip {
+  position: fixed !important;
+  left:40% !important;
+  top:50% !important;
+  border: solid 2px #e85e56 !important;
+  border-radius: 8px;
+  background-color: rgba(31,29,36,0.95) !important;
+}
+.dash-tooltip:before{
+  border: none !important;
+  background-color: transparent !important;
+}
+.dash-tooltip:after{
+  margin-bottom: 2px;
+  border: dashed 0px transparent !important;
+  border-bottom-color: rgba(232, 94, 86,0.8) !important;
+  background-color: transparent !important;
+}
 
-
+.dash-table-tooltip{
+  max-width: 600px !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 5px;
+  color:#e85e56;
+  line-height: 25px;
+  font-size: large;
+}
 
 div#ranking-table::-webkit-scrollbar {
-      width:3px;
-      height: 5px;
+      width:15px;
+      height: 15px;
       background:transparent;
+      margin-left: 3px;
   }
 div#ranking-table::-webkit-scrollbar-track {
-    background:none;
-  }
-
-div#ranking-table:hover ::-webkit-scrollbar-track {
-    background:#f4e9dc;
-    border: 1px solid #1e1c24;
+    background:transparent;
+    border: 0px solid #1e1c24;
     border-radius:10px;
   }
 
-div#ranking-table:-webkit-scrollbar-thumb {
-    background: none;
+div#ranking-table::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
-div#ranking-table:hover::-webkit-scrollbar-thumb {
+div#ranking-table::-webkit-scrollbar-thumb {
+    border: 5px solid #1e1c24;
+    background-color: #e85e56;
+    border-radius:10px;
+}
+
+
+
+div#make-groups{
+    overflow-y: scroll;
+    max-height: 25vh;
+    padding-bottom: 15vh;
+}
+div#make-groups::-webkit-scrollbar {
+      width:5px;
+      height: 0px;
+      background:transparent;
+      margin-left: 3px;
+  }
+div#make-groups::-webkit-scrollbar-track {
+    background:transparent;
+    border: 0px solid #1e1c24;
+    border-radius:10px;
+  }
+
+
+div#make-groups::-webkit-scrollbar-thumb {
     border: 0px solid #1e1c24;
     background-color: #e85e56;
     border-radius:10px;
 }
+
+
+
+
+#ranking_table{
+  padding-right: 10px;
+}
+
 
 div#display-cards::-webkit-scrollbar {
       width:3px;
@@ -1420,14 +1487,66 @@ div#search-top-result:hover::-webkit-scrollbar-thumb {
 
 }
 
+
+
+
+.table-dropdown > .Select-control > span {
+    
+    background: transparent !important;
+    border-color: #e85e56 !important;
+}
+.table-dropdown div {
+    background-color: #1f1d24 !important;
+    border-color: #404040 !important;
+}
+
+.table-dropdown > .Select-control > .Select-multi-value-wrapper > .Select-value {
+  background-color: #494949;
+  border-color: #494949;
+  color: #f4e9dc;
+
+  border-radius: 5px;
+}
+.table-dropdown > .Select-control > .Select-multi-value-wrapper > .Select-value > .Select-value-label {
+  color: #f4e9dc;
+  font-size: x-small;
+}
+
+.table-dropdown > .Select-control > .Select-multi-value-wrapper > .Select-value > .Select-value-icon {
+  border-right: 0px dashed #e85e56;  
+}
+
+.table-dropdown > .Select-control > .Select-multi-value-wrapper > .Select-value > .Select-value-icon:hover {
+  color: #e85e56; 
+  box-shadow: none;
+}
+
+.table-dropdown{
+  width: 155%;
+}
+
+.table-dropdown > .Select-control {
+  margin-left: 0% !important;
+}
+
+.table-dropdown > .Select-menu-outer div {
+  font-size: small !important;
+}
+
+
+.dash-table-container{
+  width:100%;
+}
 #display-cards{
   overflow-x: scroll;
   display: flex;
   margin-left: 2px;
+  margin-bottom: 10px;
 }
 #ranking-table{
-  overflow-x: scroll;
+  overflow: scroll;
   display: flex;
+  height: 74vh;
 }
 #display-group-graph{
   overflow-x: scroll;
@@ -1451,16 +1570,16 @@ div#search-top-result:hover::-webkit-scrollbar-thumb {
 
 .Select-menu-outer ::-webkit-scrollbar {
       width:6px;
-      background:#f4e9dc;
+      background:#1e1c24;
 }
 .Select-menu-outer ::-webkit-scrollbar-thumb {
-    border: 1px solid #e85e56;
+    border: 0px solid #e85e56;
     background-color: #e85e56;
     border-radius:10px;
   }
-.Select-menu-outer::-webkit-scrollbar-track {
-    background:#f4e9dc;
-    border: 1px solid #f4e9dc;
+.Select-menu-outer ::-webkit-scrollbar-track {
+    background:#1e1c24;
+    border: 0px solid #f4e9dc;
     border-radius:10px;  
 }
 
@@ -1610,10 +1729,9 @@ div#search-top-result:hover::-webkit-scrollbar-thumb {
 #app-content {
   background: inherit;
   padding: 0;
-  width: 101%;
   /*max-width: 95%;*/
   height: 97%;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 
 #settings-menu {
@@ -1656,7 +1774,8 @@ div#search-top-result:hover::-webkit-scrollbar-thumb {
 }
 
 .figure-side-by-side{
-
+  margin-top: 25px;
+  margin-bottom: 10px;
 
 }
 .cmSQpo{

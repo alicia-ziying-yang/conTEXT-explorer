@@ -116,6 +116,7 @@ def delete_corpus_from_app(index_dir):
 def add_new_corpus_from_app(index_dir,corpus_dict,id_col,text_col,title_col,year_col,author_col,add_cols): 
 
 	doc_no_year={}
+	sent_no_year={}
 	doc_len_dict={}
 	
 	path = os.path.join("./whoosh_search", index_dir)
@@ -169,7 +170,12 @@ def add_new_corpus_from_app(index_dir,corpus_dict,id_col,text_col,title_col,year
 			doc_len_dict[doc_len]+=1
 		else:
 			doc_len_dict[doc_len]=1
-			
+		
+		if year in sent_no_year:
+			sent_no_year[year]+=sen_no
+		else:
+			sent_no_year[year]=sen_no
+
 		if year in doc_no_year:
 			doc_no_year[year]+=1
 		else:
@@ -191,6 +197,12 @@ def add_new_corpus_from_app(index_dir,corpus_dict,id_col,text_col,title_col,year
 		text=str(length)+" "+str(doc_len_dict[length])+"\n"
 		f3.write(text)
 	f3.close()
+
+	f4 = open(path+"sent_num", "w")
+	for year in sent_no_year:
+		text=year+" "+str(sent_no_year[year])+"\n"
+		f4.write(text)
+	f4.close()
 
 	print("[ Indexing Finished. In total "+str(line_no)+" documents. ]")
 	return True
@@ -261,8 +273,12 @@ def filter_corpus(corpus_ind_dir, query_list,year_from, year_to):
 
 
 # search by query
-def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=100): #the query term in the list will be connected by OR
+def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=1000): #the query term in the list will be connected by OR
 	
+	import time
+
+	start = time.time()
+
 	ix = index.open_dir(corpus_ind_dir) #load index
 	
 	with ix.searcher() as searcher:
@@ -286,11 +302,13 @@ def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=100): #the
 		q2 = query.Or(term_list_Y)
 
 		q_f = query.And([q1,q2]) 
-
-
+		
+		# search the index
 		results = searcher.search(q_f,limit=None)
 		
+		
 		result_list=[]
+		full_sents =[] 
 		relevant_article_ids=[]
 		i=0
 
@@ -304,11 +322,11 @@ def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=100): #the
 				row_data = {}
 				
 				row_data["id"] = r["id"]
-				row_data["Year"] = r["year"]
-				row_data["Sentence"] = r["content"].lower()#snipet
-				row_data["Title"] = r["title"].lower()
-				row_data["Author"] = r["author"]
-				row_data["Document"] = r["content"].lower()
+				row_data["year"] = r["year"]
+				row_data["sentence"] = r["content"].lower()#snipet
+				row_data["title"] = r["title"].lower()
+				row_data["author"] = r["author"]
+				row_data["document"] = r["content"].lower()
 
 				for key in r:
 					if key in ["content", "id", "title", "year", "author"]:
@@ -316,9 +334,12 @@ def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=100): #the
 					else:
 						row_data[key]=r[key]
 
-				row_data["Score"] = round(r.score,3)
+				row_data["score"] = round(r.score,3)
 
 				result_list.append(row_data)
+				full_sents.append({"sentence":row_data["document"]})
+			else:
+				break
 
 		with open(corpus_ind_dir+"/doc_num") as f:
 			total_doc_no = 0
@@ -332,7 +353,19 @@ def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=100): #the
 
 		f.close()
 
-		return [result_list, len(results), len(searcher.search(q2,limit=None)), len(relevant_article_ids),total_doc_no]
+		with open(corpus_ind_dir+"/sent_num") as f:
+			total_sent_no = 0
+			lines = f.readlines()
+
+			for line in lines:
+				sent_num=line.strip().split()
+				if ((int(sent_num[0])>=year_from) & (int(sent_num[0])<=year_to)):
+						total_sent_no+=int(sent_num[1])
+
+		f.close()
+		
+		print("Results returned:", time.time() - start)
+		return [result_list, full_sents, len(results), total_sent_no, len(relevant_article_ids),total_doc_no]
 
 def check_sf(corpus_ind_dir,query_list):
 	query_l=[]
@@ -579,4 +612,10 @@ def get_fieldnames(corpus_ind_dir):
 	fileds.remove('content')
 	fileds.remove('id')
 	fileds.remove('title')
+	return fileds
+
+def get_table_fieldnames(corpus_ind_dir):
+	fileds=index.open_dir(corpus_ind_dir).schema.stored_names()
+	fileds.remove('content')
+	fileds.remove('id')
 	return fileds

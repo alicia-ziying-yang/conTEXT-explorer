@@ -54,7 +54,7 @@ def build_model(df_full,corpus_name,content_col):
 
     # NLTK Stop words
     from nltk.corpus import stopwords
-    # nltk.download('stopwords')
+    nltk.download('stopwords')
     stop_words = stopwords.words('english')
     stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
 

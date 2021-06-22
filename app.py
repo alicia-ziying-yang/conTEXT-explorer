@@ -7,6 +7,7 @@ import dash_uploader as du
 import uuid
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State,MATCH, ALL
+from dash.exceptions import PreventUpdate
 import dash_table
 import plotly.graph_objs as go
 import dash_daq as daq
@@ -95,6 +96,7 @@ def build_banner(corpus_element,saves_element,loaded):
                     html.Label("From"),
                     daq.NumericInput(
                         id="year-from",
+                        style={"color":"#e85e56"},
                         className="year-selector",
                         min=min(year_list),
                         max=max(year_list),
@@ -102,6 +104,7 @@ def build_banner(corpus_element,saves_element,loaded):
                     ),html.Label("To"),
                     daq.NumericInput(
                         id="year-to",
+                        style={"color":"#e85e56"},
                         className="year-selector",
                         min=min(year_list),
                         max=max(year_list),
@@ -534,16 +537,43 @@ def build_tabs():
         ],
     )
 
-def build_tab_1():
+# --- build "sentences" tab ---
+# search, and show ranking
+
+def build_tab_1(corpus_name):
+    corpus_ind_dir=corpus[corpus_name]
+    display_fileds = preprocess_corpus.get_table_fieldnames(corpus_ind_dir)
+    display_fileds.append("score")
+    opt=[{'label': f.upper(), 'value': f} for f in display_fileds]
+    
     return [
         dcc.Store(id='memory-output'),
         dcc.Loading(color="rgba(240, 218, 209,0.8)",type="cube",style={"padding-top":"25%"},children=[
+            html.Div(style={"margin-left": "30px","margin-top": "1.5%", "font-variant": "all-small-caps","color": "#e85e56"},
+                children="QUERY"),
+            html.Div(id="current_query",style={"margin-left": "50px", "color": "#f4e9dc","width": "42%"},
+                children=""),
+            html.Div(style={"display":"flex"},children=[
+                html.Div(style={"width": "430px"},
+                    children=[html.Div(style={"margin-left": "30px", "font-variant": "all-small-caps","color": "#e85e56"},
+                                            children="DISPLAYED COLUMNS"),
+                                    dcc.Dropdown(id="r_table_paras",className="table-dropdown",style={"margin-left":"10%"},
+                                                options=opt,value=display_fileds,multi=True)]
+                        ),
+                html.Div(children=[html.Div(style={"font-variant": "all-small-caps","color": "#e85e56"},
+                                            children="SENTS PER PAGE"),
+                                    daq.NumericInput(id="n_pp",style={"margin-top": "4px","margin-left": "10%","color":"#f4e9dc","width": "40%"},
+                                            className="year-selector sent-pp",min=10,max=1000,value=16)]
+                        )
+                ]),
+            
+            
             html.Div(
-                id="rel_sent",style={"margin-left": "20px", "margin-top": "2%","font-variant": "all-small-caps"},className="side-by-side",
+                id="rel_sent",style={"position": "absolute","right": "1.5%","top": "90px","font-variant": "all-small-caps"},className="side-by-side",
                 children=[""]
             ),
             html.Div(
-                id="ranking-table",
+                id="ranking-table",style={"margin-top":"1%"},
                 className="output-datatable"
             ),
             ]),
@@ -554,106 +584,151 @@ def build_tab_1():
         )
     ]
 
-# --- build "sentences" tab ---
-# search, and show ranking
 
 @app.callback([Output("ranking-table", "children"),Output('memory-output', 'data'),
-                Output("rel_sent","children")],
+                Output("rel_sent","children"),Output("current_query","children")],
               [Input("base-term", 'value'),Input("corpus-select-dropdown","value"),
-              Input("added-terms-global", "children"),Input("year-from","value"),Input("year-to","value")],
-              [State("base-term", 'value')]
+              Input("added-terms-global", "children"),Input("year-from","value"),Input("year-to","value"),
+              Input("r_table_paras",'value'),Input("n_pp","value")],
+              [State("base-term", 'value'),
+               State('memory-output', 'data'),State("rel_sent","children"),State("current_query","children")]
               )
-def show_ranking(base_term,corpus_name,added,y_from,y_to,t):
+def show_ranking(base_term,corpus_name,added,y_from,y_to,cols,npp,t, mo_result,rs,cq):
+
     if corpus_name:
         corpus_ind = corpus[corpus_name]
         if base_term:
             added.append(t) #add base term
             if y_from > y_to:
-                return [html.Div("Please correct the year range."),"",""]
+                return [html.Div("Please correct the year range."),"","",""]
             for term in added: #handle phrases
                 if "_" in term:
                     added.append(term.replace("_"," "))
                     added.remove(term)
             
-            result, rel_sent_no, sent_no, rel_article_no, article_no=preprocess_corpus.search_corpus(corpus_ind, added, y_from, y_to)
-            result_df = pd.DataFrame.from_records(result)
-            del result_df["Document"]
-            rel_sent_div=[  html.Div(className="number-card-1",children=[
-                                html.Div(className="number-back",children=[
-                                    html.Div(className="number-dis",children=[rel_sent_no]),
-                                    html.Div(className="number-label",children=[html.Div("RELEVANT SENTENCES")]),
-                                ]),html.Div("|",className="saperator"),
-                                html.Div(className="number-back",children=[
-                                    html.Div(className="number-dis2",children=[sent_no]),
-                                    html.Div(className="number-label2",children=[html.Div("TOTAL SENTENCES")]),  
-                                ])
-                            ]),
-                            html.Div(className="number-card-2",children=[
-                                html.Div(className="number-back",children=[
-                                    html.Div(className="number-dis",children=[rel_article_no]),
-                                    html.Div(className="number-label",children=[html.Div("RELEVANT DOCUMENTS")]),                 
-                                ]),html.Div("|",className="saperator"),
-                                html.Div(className="number-back",children=[
-                                    html.Div(className="number-dis2",children=[article_no]),
-                                    html.Div(className="number-label2",children=[html.Div("TOTAL DOCUMENTS")]),    
-                                ])
-                            ])
-                        ]
-            if len(result)>0:
-                return [dash_table.DataTable(
-                        id="ranking_table",
-                        sort_action='native',
-                        sort_mode='multi',
-                        filter_action="native",
-                        style_header={"fontWeight": "bold", "color": "inherit","border-bottom":"1px dashed"},
-                        style_as_list_view=True,
-                        fill_width=True,
-                        page_size=10,
-                        style_cell_conditional=[
-                            {"if": {"column_id": "Sentence"}, 'width': '500px',"maxWidth":'500px'},
-                            {"if": {"column_id": "Title"}, "padding-left":"15px","maxWidth":'300px'},
-                            {'if': {'column_id': 'Author'},'maxWidth': '150px'},
-                            {'if': {'row_index': 'odd'},"backgroundColor":"#49494966"}
-                        ],
-                        style_cell={
-                            "backgroundColor": "transparent",
-                            "fontFamily": "Open Sans",
-                            "padding": "0 0.2rem",
-                            "color": "#f4e9dc",
-                            "border": "none",
-                            'overflow': 'hidden',
-                            'textOverflow': 'ellipsis',
-                            'width': '55px',
-                            'minWidth': '55px',
-                            'maxWidth': '200px',
-                            "padding-left":"10px",
-                            "textAlign": "left"
-                        },
-                        css=[
-                            {"selector": "tr:hover td", "rule": "color: #e85e56 !important;cursor:pointer;height:10px;"},
-                            {"selector": "td:hover", "rule": "border-bottom: dashed 0px !important;"},
-                            {"selector": ".dash-spreadsheet-container table", 
-                                "rule": '--text-color: #e85e56 !important'},
-                            {"selector":".previous-next-container","rule":"float: left;"},
-                            {"selector": "tr", "rule": "background-color: transparent;"},
-                            {"selector": ".current-page", "rule": "background-color: transparent;"},
-                            {"selector":".current-page::placeholder","rule":"color:#e85e56;"},
-                            {"selector": ".column-header--sort","rule":"color: #e85e56; padding-right:3px;"}
-                        ],
-                        style_data_conditional=[
-                        {"if": {"state": "active"},  # 'active' | 'selected'
-                            "border": "0px solid"}]+
-                        data_bars(result, 'Score'),
-                        data=result,
-                        columns=[{"id": c, "name": c} for c in result_df.columns],
-                        selected_rows=[],
-                    ),result,rel_sent_div]
+            ctx = dash.callback_context
+            if not ctx.triggered:
+                button_id = '' # default
             else:
-                return [html.Div("No result"),"",""]
+                button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+
+
+            if ((button_id == "r_table_paras")|(button_id == "n_pp")): # no need to search index again, just change layout
+                result = mo_result[0]
+                tooltip = mo_result[1]
+                if len(result)>0:
+                    result_df = pd.DataFrame.from_records(result)
+                    columns_d = [{"id": "id", "name": "id"}]
+                    columns_d.append({"id": "sentence", "name": "sentence"})
+                    for c in result_df.columns:
+                        if ((c != "id")&(c != "sentence")&(c in cols)):
+                            columns_d.append({"id": c, "name": c})
+
+                    return [build_ranking_table(result,columns_d,tooltip,npp),
+                            mo_result,rs,cq]
+                else:
+                    return [html.Div("No result"),mo_result,rs,cq]
+
+
+            else: # need to search the index
+                
+                result, tooltip, rel_sent_no, sent_no, rel_article_no, article_no=preprocess_corpus.search_corpus(corpus_ind, added, y_from, y_to)
+                
+                result_df = pd.DataFrame.from_records(result)
+                del result_df["document"]
+                
+
+                rel_sent_div=[  html.Div(className="number-card-1",children=[
+                                    html.Div(className="number-back",children=[
+                                        html.Div(className="number-dis",children=[rel_sent_no]),
+                                        html.Div(className="number-label",children=[html.Div("RELEVANT SENTENCES")]),
+                                    ]),html.Div("|",className="saperator"),
+                                    html.Div(className="number-back",children=[
+                                        html.Div(className="number-dis2",children=[sent_no]),
+                                        html.Div(className="number-label2",children=[html.Div("TOTAL SENTENCES")]),  
+                                    ])
+                                ]),
+                                html.Div(className="number-card-2",children=[
+                                    html.Div(className="number-back",children=[
+                                        html.Div(className="number-dis",children=[rel_article_no]),
+                                        html.Div(className="number-label",children=[html.Div("RELEVANT DOCUMENTS")]),                 
+                                    ]),html.Div("|",className="saperator"),
+                                    html.Div(className="number-back",children=[
+                                        html.Div(className="number-dis2",children=[article_no]),
+                                        html.Div(className="number-label2",children=[html.Div("TOTAL DOCUMENTS")]),    
+                                    ])
+                                ])
+                            ]
+                if len(result)>0:
+                    columns_d = [{"id": "id", "name": "id"}]
+                    columns_d.append({"id": "sentence", "name": "sentence"})
+                    for c in result_df.columns:
+                        if ((c != "id")&(c != "sentence")&(c in cols)):
+                            columns_d.append({"id": c, "name": c})       
+                    
+                    return [build_ranking_table(result,columns_d,tooltip,npp), [result,tooltip], rel_sent_div," | ".join(added)]
+                else:
+                    return [html.Div("No result"),"",""," | ".join(added)]
         else:
-            return [html.Div("Please type in the base term in the left pane"),"",""]
+            return [html.Div("Please type in the base term in the left pane"),"","",""]
     else:
-        return [html.Div("Start by selecting a corpus"),"",""]
+        return [html.Div("Start by selecting a corpus"),"","",""]
+
+def build_ranking_table(result,columns_d,tooltip,npp):
+    return dash_table.DataTable(
+                            id="ranking_table",
+                            sort_action='native',
+                            sort_mode='multi',
+                            filter_action="native",
+                            style_header={"fontWeight": "bold", "color": "inherit","border-bottom":"1px dashed"},
+                            style_as_list_view=True,
+                            fill_width=True,
+                            page_size=npp,
+                            style_cell_conditional=[
+                                {"if": {"column_id": "sentence"}, 'width': '500px',"maxWidth":'500px'},
+                                {"if": {"column_id": "title"}, "padding-left":"15px","maxWidth":'300px'},
+                                {'if': {'column_id': 'author'},'maxWidth': '150px'},
+                                {'if': {'row_index': 'odd'},"backgroundColor":"#49494966"}
+                            ],
+                            style_cell={
+                                "backgroundColor": "transparent",
+                                "fontFamily": "Open Sans",
+                                "padding": "0 0.2rem",
+                                "color": "#f4e9dc",
+                                "border": "none",
+                                'overflow': 'hidden',
+                                'textOverflow': 'ellipsis',
+                                'width': '55px',
+                                'minWidth': '55px',
+                                'maxWidth': '200px',
+                                "padding-left":"10px",
+                                "textAlign": "left"
+                            },
+                            
+                            css=[
+                                #{"selector": ".dash-cell.focused","rule": "background-color: #f4e9dc !important; border:none;"},
+                                {"selector": "table", "rule": "--accent: #e85e56;"},
+                                {"selector": "tr:hover td", "rule": "color: #e85e56 !important; background-color:transparent !important; cursor:pointer;height:10px;"},
+                                {"selector": "td:hover", "rule": "border-bottom: dashed 0px !important;"},
+                                {"selector": ".dash-spreadsheet-container table", 
+                                    "rule": '--text-color: #e85e56 !important'},
+                                {"selector":".previous-next-container","rule":"float: left;"},
+                                {"selector": "tr", "rule": "background-color: transparent;"},
+                                {"selector": ".current-page", "rule": "background-color: transparent;"},
+                                {"selector":".current-page::placeholder","rule":"color:#e85e56;"},
+                                {"selector": ".column-header--sort","rule":"color: #e85e56; padding-right:3px;"}
+                            ],
+                            style_data_conditional=[
+                            {"if": {"state": "active"},  # 'active' | 'selected'
+                                "border": "0px solid"}]+
+                            data_bars(result, 'score'),
+                            data=result,
+                            columns=columns_d,
+                            tooltip_data=tooltip,
+                            tooltip_delay=1000, #1s
+                            tooltip_duration=None,
+                            selected_rows=[]
+                        )
 
 def data_bars(df, column):
     Scores=[]
@@ -702,13 +777,11 @@ def data_bars(df, column):
     [State('memory-output', 'data')])
 def update_graphs(active_cell,data):
     if active_cell:
-        for i in data:
+        for i in data[0]:
             if i['id'] == active_cell['row_id']:
-                return generate_modal(i['Document'])
+                return generate_modal(i['document'])
 
-    # === Even with no else will give error, but it will close the pop-up automatically ===
-    # else:
-    #     return [[]]
+    raise PreventUpdate 
 
 # term selection in the sentence pop up window
 @app.callback(
@@ -821,6 +894,7 @@ def generate_modal(text=""):
                State("added-terms-global", "children")]
             )
 def add_from_pop(n_clicks,values,added_value_global):
+
     empty_list=[]
     new_add=[]
 
@@ -845,7 +919,10 @@ def add_from_pop(n_clicks,values,added_value_global):
             if not phrase in added_value_global:
                 new_add.append(phrase)
 
-    return [empty_list,new_add]
+    if n_clicks>0:
+        return [empty_list,new_add]
+    else:
+        raise PreventUpdate
 
 
 # function for checking sentence frequency
@@ -1552,11 +1629,11 @@ def build_big_graph(group_sf_dict,doc_num_year,year_from,year_to):
                             ),
                             "autosize":False,
                             "colorway": color_used,#px.colors.qualitative.Prism,
-                            "margin":dict(l=15,r=15,b=10,t=40,pad=4),
+                            "margin":dict(l=55,r=15,b=40,t=40,pad=4),
                             "legend":dict(font=dict(color="#f4e9dc")),
                             "template":"plotly_dark",
                             "width":1100,
-                            "height":290,
+                            "height":330,
                             "legend":dict(yanchor="top",y=0.99,xanchor="left",x=0.01),
                         },
                     }
@@ -1930,7 +2007,7 @@ def update_corpus(data,options):
 )
 def render_tab_content(tab_switch, corpus_name):
     if tab_switch == "tab1":
-        return [build_tab_1()] 
+        return [build_tab_1(corpus_name)] 
     if tab_switch == "tab22":
         return [build_tab_group()]
     if tab_switch == "tab3":
