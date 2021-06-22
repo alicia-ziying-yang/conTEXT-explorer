@@ -25,11 +25,11 @@ bibliography: paper.bib
 
 
 
-# 1. Summary
+# Summary
 
 **ConTEXT Explorer** is an open Web-based system that assists in exploring the context of concepts (combinations of co-occurring words and phrases) over time in text documents. It provides a user-friendly interface to the analysis of user-provided text data and integrates functionalities of the Whoosh search engine, Spacy, Gensim and Plotly Python libraries. By providing suggestions for query expansion and producing interactive plots, `ConTEXT Explorer` facilitates exploratory data analysis, which can serve as the basis for subsequent text classification.
 
-# 2. Statement of Need
+# Statement of need
 
 With the availability of digital sources of data and associated tools, automated text analysis is becoming increasingly popular in humanities and social sciences. While for very large coprora, unsupervised text mining methods like topic modelling [@lda] can provide some useful summaries of data, many social science and humanities applications require analysis of data in context. That is, simple "bags of words" automatically mined and presented in isolation from the orignial text are often not meaningful for complex questions involving human behaviour and society. Inevitably, human interpretation is required to make sense of such patterns. For corpora with more than several hundred documents, there is a need for computational tools that can assist researchers in exploring the context in which "bags of words" (we will call them <em>concepts</em> from now on) occur. 
 
@@ -58,11 +58,11 @@ Compared to commercial text analysis systems such as **RapidMiner** [@rapidminer
 
  
 
-# 3. Key Features
+# Key features
 
 `ConTEXT Explorer` has been tested locally under macos and as a server running under Ubuntu.
 
-## 3.1 Build a corpus
+## Build a corpus
 
 Users are asked to format their text documents as a CSV file (with each document saved in a separate row), before uploading it into `ConTEXT Explorer`. At minimum, users are asked to provide document text and publication year. Users can also upload columns with additional document information (such as document author, title, and so on).
 
@@ -74,7 +74,7 @@ Users are asked to format their text documents as a CSV file (with each document
 
 For each corpus, users can create a new analysis, or load a pre-saved analysis to the dashboard. 
 
-## 3.2 Dashboard
+## Dashboard
 ![The starting dashboard.](https://paper-attachments.dropbox.com/s_BF58715651395C8B59D508B9A7AFBDF87128C0D6732F3C5CB80FFC81F0067860_1618206868822_overview.png)
 
 As shown in Figure 1, the dashboard interface has two panes. On the left-hand side, users can: 
@@ -98,7 +98,7 @@ As shown in Figure 1, the dashboard interface has two panes. On the left-hand si
 
 **Graphs**. Based on the query groups generated in the previous tab, this page displays aggregated and individual plots, which allow to compare groups (top) and individual terms within each group (bottom). Users can choose the number of relevant documents, number of sentences, or proportion of document as the y-axis of the graphs. All graphs are plotted by Plotly [@plotly] which allows users to interact with every trace in the graphs.
 
-## 3.3 Save and reload an analysis
+## Save and reload an analysis
 
 As mentioned in Section 3.2, users are able to save the details of their analysis (including added terms and generated groups), and reload it to view all of the ranking, groups and graphs from the index page.
 
