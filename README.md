@@ -1,5 +1,6 @@
 # ConTEXT-Explorer
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.com/alicia-ziying-yang/conTEXT-explorer.svg?branch=main)](https://travis-ci.com/alicia-ziying-yang/conTEXT-explorer)
 
 **ConTEXT Explorer** is an open Web-based system for exploring and visualizing concepts (combinations of co-occurring words and phrases) over time in the text documents. **ConTEXT Explorer** is designed to lower the barriers to applying information retrieval and machine learning for text analysis, including:
 - preprocessing text with sentencizer and tokenizer in a **Spacy pipline**;
