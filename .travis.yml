@@ -7,4 +7,4 @@ install:
   - python -m spacy download en
 # command to run tests
 script:
-  - python app.py
+  - nohup python app.py &
