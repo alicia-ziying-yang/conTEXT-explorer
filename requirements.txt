@@ -7,7 +7,7 @@ dash-uploader==0.4.1
 dash-table==4.9.0
 gunicorn>=19.9.0
 numpy>=1.16.2
-pandas>=0.24.2
+pandas==1.2.3
 Whoosh==2.7.4
 spacy==2.2.4
 gensim==3.8.1
