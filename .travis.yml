@@ -2,6 +2,14 @@ language: python
 python:
   - "3.7.5"
 # command to install dependencies
+
+addons:
+  apt:
+    sources:
+       - google-chrome
+    packages:
+    - google-chrome-stable
+    
 install:
   - pip install -r requirements.txt
   - pip install dash[testing]
