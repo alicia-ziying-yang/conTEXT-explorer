@@ -217,7 +217,7 @@ def filter_corpus(corpus_ind_dir, query_list,year_from, year_to):
 		term_list_Y=[]
 
 		for t in query_list:
-			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t)
+			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t).lower()
 			splitted=t.split()
 			if len(splitted)>1:
 				term_list_T.append(query.Phrase("content", splitted))
@@ -288,7 +288,7 @@ def search_corpus(corpus_ind_dir, query_list,year_from, year_to,top_n=1000): #th
 		term_list_Y=[]
 
 		for t in query_list:
-			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t)
+			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t).lower()
 			splitted=t.split()
 			if len(splitted)>1:
 				term_list_T.append(query.Phrase("content", splitted))
@@ -373,7 +373,7 @@ def check_sf(corpus_ind_dir,query_list):
 	ix = index.open_dir(corpus_ind_dir) #load index
 	with ix.searcher() as searcher:
 		for t in query_list:
-			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t)
+			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t).lower()
 			splitted=t.split()
 			if len(splitted)>1:
 				docfreq=len(searcher.search(query.Phrase("content", splitted),limit=None))
@@ -404,7 +404,7 @@ def check_df_year(corpus_ind_dir,query_list,year_from,year_to):
 				t_list=t.split("+")
 				term_list_T_AND=[]
 				for tx in t_list:
-					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx)
+					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx).lower()
 					splitted=tx.split()
 					if len(splitted)>1:
 						term_list_T_AND.append(query.Phrase("content", splitted))
@@ -415,7 +415,7 @@ def check_df_year(corpus_ind_dir,query_list,year_from,year_to):
 				t_list=t.split("/")
 				term_list_T_OR=[]
 				for tx in t_list:
-					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx)
+					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx).lower()
 					splitted=tx.split()
 					if len(splitted)>1:
 						term_list_T_OR.append(query.Phrase("content", splitted))
@@ -424,13 +424,14 @@ def check_df_year(corpus_ind_dir,query_list,year_from,year_to):
 					q1=query.Or(term_list_T_OR)
 			
 			else: # single term
-				t=re.sub(r'[^a-zA-Z0-9_ ]', '', t)
-				splitted=t.split()
+				tx = t 
+				tx=re.sub(r'[^a-zA-Z0-9_ ]', '', tx).lower()
+				splitted=tx.split()
 				if len(splitted)>1:
 					q1=query.Phrase("content", splitted)			
-					t='_'.join(splitted)
+					tx='_'.join(splitted)
 				else:
-					q1=query.Term("content", t)
+					q1=query.Term("content", tx)
 
 			
 			q_f = query.And([q1,q2]) 
@@ -478,13 +479,16 @@ def check_tf_year(corpus_ind_dir,query_list):
 			t=re.sub(r'[^a-zA-Z0-9_ ]', '', t)
 			splitted=t.split()
 			if len(splitted)>1:
-				results=searcher.search(query.Phrase("content", splitted),limit=None)#this is sentence frequency
+				splitted_lower =[]
+				for st in splitted:
+					splitted_lower.append(st.lower())
+				results=searcher.search(query.Phrase("content", splitted_lower),limit=None)#this is sentence frequency
 				t='_'.join(splitted)
 				tf[t]=0
 				for r in results:						
 					tf[t]+=1					
 			else:
-				results=searcher.frequency("content", t)
+				results=searcher.frequency("content", t.lower())
 
 				tf[t]=results		
 
@@ -506,7 +510,7 @@ def check_group_sf_year(corpus_ind_dir,query_list,group_all):
 				t_list=t.split("+")
 				term_list_T_AND=[]
 				for tx in t_list:
-					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx)
+					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx).lower()
 					splitted=tx.split()
 					if len(splitted)>1:
 						term_list_T_AND.append(query.Phrase("content", splitted))
@@ -519,7 +523,7 @@ def check_group_sf_year(corpus_ind_dir,query_list,group_all):
 				t_list=t.split("/")
 				term_list_T_OR=[]
 				for tx in t_list:
-					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx)
+					tx=re.sub(r'[^a-zA-Z0-9 ]', ' ', tx).lower()
 					splitted=tx.split()
 					if len(splitted)>1:
 						term_list_T_OR.append(query.Phrase("content", splitted))
@@ -532,9 +536,12 @@ def check_group_sf_year(corpus_ind_dir,query_list,group_all):
 				t=re.sub(r'[^a-zA-Z0-9 ]', ' ', t)
 				splitted=t.split()
 				if len(splitted)>1:
-					term_list_T.append(query.Phrase("content", splitted))
+					splitted_lower =[]
+					for st in splitted:
+						splitted_lower.append(st.lower())
+					term_list_T.append(query.Phrase("content", splitted_lower()))
 				else:
-					term_list_T.append(query.Term("content", t))
+					term_list_T.append(query.Term("content", t.lower()))
 
 
 		if group_all:
