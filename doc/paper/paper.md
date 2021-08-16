@@ -38,9 +38,9 @@ Similarly, there is a need for tools that assist in the manual construction of c
 [^1]: We use underscore to join multiple words into a single phrase.
 [^2]: This is an example where we apply `ConTEXT Explorer` in the Australian Research Council Discovery Project (DP180101711) "Understanding Political Debate and Policy Decisions Using Big Data".
 
-Most existing computational methods underlying automated text processing require at least a working knowledge of relevant methods and programming languages (such as R or Python). `ConTEXT Explorer` is designed to lower these barriers to entry, by allowing an application of information retrieval and machine learning methods to text analysis without programming knowledge. 
+Most existing computational methods underlying automated text processing require at least a working knowledge of relevant methods and programming languages (such as R or Python). `ConTEXT Explorer` is designed to lower these barriers to entry, particularly for humanities and social science researchers, by allowing an application of information retrieval and machine learning methods to text analysis without programming knowledge. 
 
-# Comparision with other tools
+# Comparison with other tools
 
 Current text analysis tools require either previous knowledge of programming (e.g., R, Python), or are commercial products (e.g., **RapidMiner** [@rapidminer], **Google Cloud Natural Language API** [@googlenlp]). One exception that we are aware of is **Voyant Tools** [@voyant], which is an open-source web-based text analysis tool built in Java. It allows the users to explore their data using some basic text analysis techniques such as word frequencies (at the document level), word cloud, and word context (words appearing around a chosen term). `ConTEXT Explorer` provides several functionalities that give a user a deeper understanding of the text, which are currently not available in Voyant Tools, such as: concept suggestions, sentence ranking and concept grouping. 
 It includes models allowing discovery of similar terms, and a search engine allowing retrieval of sentences relevant to concept terms, which can be used for concept expansion, and visualization of concepts over time. One key feature is that a concept can be either a a conjunction or disjunction of bags of words.
