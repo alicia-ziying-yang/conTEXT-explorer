@@ -2389,5 +2389,5 @@ def update_output(iscompleted,filenames, upload_id, upload):
 
 # Running the server
 if __name__ == "__main__":
-    #app.run_server(debug=False,host="0.0.0.0") # ubuntu server
-    app.run_server(debug=False, port="8010") # local test
+    app.run_server(debug=False,host="0.0.0.0") # ubuntu server
+    #app.run_server(debug=False, port="8010") # local test
