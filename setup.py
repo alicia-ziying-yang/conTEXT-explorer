@@ -49,10 +49,18 @@ setup(name='ConTEXT-Explorer',
       author_email='ziying.yang@unimelb.edu.au',
       version=VERSION,
       license='Apache License 2.0',
-      packages=find_packages(),
+      packages=['.','whoosh_search','topic_model'],#find_packages(),
+      package_dir={'.': '.', 'whoosh_search':'whoosh_search',
+      'topic_model':'topic_model'},
+      include_package_data=True,
       python_requires='==3.7.5',
       install_requires=install_requires,
       extras_require={},
+      entry_points = {
+        "console_scripts": [
+            "start-ce = app:start_app"
+        ]
+      },
       cmdclass={
           'build': Build,
           'CustomCommands': CustomCommands,
