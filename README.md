@@ -34,7 +34,7 @@ ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Pyt
 ### Run the app
 - If you want to run ConTEXT Explorer on an **ubuntu server**, use:
 
-      python app.py
+      start-ce
 
   The IP address with app access will be displayed in the output.
   
