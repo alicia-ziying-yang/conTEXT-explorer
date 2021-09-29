@@ -28,14 +28,14 @@ import base64
 import io
 import time
 import urllib
+from flask import Flask
 
-
-UPLOAD_FOLDER_ROOT="./uploads"
-app = dash.Dash(
-    __name__,
+UPLOAD_FOLDER_ROOT="./upload"
+server = Flask("__main__")
+app = dash.Dash(server=server,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}]
 )
-server = app.server
+#server = app.server
 app.config["suppress_callback_exceptions"] = True
 
 du.configure_upload(app, UPLOAD_FOLDER_ROOT)
@@ -2386,7 +2386,9 @@ def update_output(iscompleted,filenames, upload_id, upload):
     else:
         return upload
 
-
+def start_app():
+    app.run_server(debug=False, port="8010")
+    
 # Running the server
 if __name__ == "__main__":
     app.run_server(debug=False,host="0.0.0.0") # ubuntu server
