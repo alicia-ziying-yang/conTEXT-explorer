@@ -27,7 +27,6 @@ dependencies:
     - charset-normalizer==2.0.6
     - click==8.0.1
     - colorama==0.4.4
-    - context-explorer==1.0.0
     - cycler==0.10.0
     - cymem==2.0.5
     - dash==1.14.0
@@ -39,7 +38,6 @@ dependencies:
     - dash-table==4.9.0
     - dash-uploader==0.4.1
     - docutils==0.17.1
-    - en-core-web-sm==2.2.5
     - flask==2.0.1
     - flask-compress==1.10.1
     - future==0.18.2
