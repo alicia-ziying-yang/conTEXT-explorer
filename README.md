@@ -26,34 +26,45 @@ Clone this repo to your local environment:
 
     git clone https://github.com/alicia-ziying-yang/conTEXT-explorer.git
 
-### Install required dependencies    
-ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5`, and all required packages are listed in `requirement.txt`. To install the packages in your local environment, you need to upgrade `pip` to the newest version and use:
+## Set up environment
+ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5` and all required packages listed in `requirement.txt`. To help you install this application correctly, we provide conda environment file `ce-env.yml` for you to set up a virtual environment. Simply enter the folder:
+
+    cd conTEXT-explorer
+    
+and run:
+
+    conda env create -f ce-env.yml
+    
+To activate this environment, use:
+
+    conda activate ce-env
+
+### Install the application
+Then, ConTEXT Explorer can be easily installed by:
 
     pip install . 
     
 ### Run the app
-- If you want to run ConTEXT Explorer on an **ubuntu server**, use:
-
-      python app.py
-
-  The IP address with app access will be displayed in the output.
-  
-  If you have issues with the access, try running the code with `nohup`:
-
-      nohup python app.py &
-    
-  
-
 - If you want to run ConTEXT Explorer on your **local computer**, comment the code for ubuntu server, and uncomment the last line in `app.py`:
 
        # app.run_server(debug=False, host="0.0.0.0") # ubuntu server    
        app.run_server(debug=False, port="8010") # local test           
 
-  You can then access the app through your browser: http://127.0.0.1:8010
+  To start the application, use:
 
-- You can also start the app by the command:
+      start-ce
+        
+  or
 
-        start-ce
+      python app.py
+    
+  The IP address with app access will be displayed in the output.
+      
+- If you want to run ConTEXT Explorer on an **ubuntu server**, use:
+
+      nohup python app.py &
+  
+
 
 ## How to use
 A [sample corpus](https://github.com/alicia-ziying-yang/conTEXT-explorer/blob/main/doc/sample_data.csv) with a saved analysis is preset in this app. Feel free to explore the app features using this example. Please check more details in the manual below.
