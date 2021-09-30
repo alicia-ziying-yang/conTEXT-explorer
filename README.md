@@ -27,7 +27,7 @@ Clone this repo to your local environment:
     git clone https://github.com/alicia-ziying-yang/conTEXT-explorer.git
 
 ## Set up environment
-ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5` and all required packages listed in `requirement.txt`. To help you install this application correctly, we provide conda environment file `ce-env.yml` for you to set up a virtual environment. Simply enter the folder:
+ConTEXT Explorer is developed using Plotly Dash in **Python**. We are using `Python 3.7.5` and all required packages listed in `requirement.txt`. To help you install this application correctly, we provide a conda environment file `ce-env.yml` for you to set up a virtual environment. Simply enter the folder:
 
     cd conTEXT-explorer
     
