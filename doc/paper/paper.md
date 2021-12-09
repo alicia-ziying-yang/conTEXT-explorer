@@ -61,7 +61,7 @@ Compared to commercial text analysis systems such as **RapidMiner** [@rapidminer
 
 ## Build a corpus
 
-Users are asked to format their text documents as a CSV file (with each document saved in a separate row), before uploading it into `ConTEXT Explorer`. At a minimum, users are asked to provide document text and publication year. Users can also upload columns with additional document information (such as document author, title, and so on).
+Users are asked to format their text documents as a CSV file (with each document saved in a separate row), before uploading this file into `ConTEXT Explorer`. At a minimum, users are asked to provide document text and publication year. Users can also upload columns with additional document information (such as document author, title, and so on).
 
 `ConTEXT Explorer` processes the submitted file in the following steps.
 
